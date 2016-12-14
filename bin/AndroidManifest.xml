@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="kr.ac.mju.smartclass"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="18" />
+
+    <!-- Permission -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.NFC" />
+
+    <permission
+        android:name="kr.ac.mju.smartclass.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="kr.ac.mju.smartclass.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher_mju2"
+        android:logo="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.DeviceDefault.Light" >
+
+        <!-- Activity -->
+        <activity
+            android:name="kr.ac.mju.smartclass.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="kr.ac.mju.smartclass.JoinActivity" >
+        </activity>
+        <activity android:name="kr.ac.mju.smartclass.LoginActivity" >
+        </activity>
+        <activity android:name="kr.ac.mju.smartclass.ManagerTabActivity" >
+        </activity>
+        <activity android:name="kr.ac.mju.smartclass.MessageContent" >
+        </activity>
+        <activity android:name="kr.ac.mju.smartclass.SendMessageActivity" >
+        </activity>
+        <activity android:name="kr.ac.mju.smartclass.HomeActivity" >
+        </activity>
+        <activity android:name="kr.ac.mju.smartclass.ClassCheckActivity" >
+        </activity>
+        <activity android:name="kr.ac.mju.smartclass.MessageCheckActivity" >
+        </activity>
+        <activity android:name="kr.ac.mju.smartclass.Tab" >
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+        <activity android:name="kr.ac.mju.smartclass.ClassMessage" >
+        </activity>
+        <activity android:name="kr.ac.mju.smartclass.EnvironmentSetting" >
+        </activity>
+
+        <!-- GCM Service -->
+        <service android:name="kr.ac.mju.smartclass.GCMIntentService" >
+        </service>
+
+        <!-- GCM Receiver -->
+        <receiver
+            android:name="com.google.android.gcm.GCMBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="kr.ac.mju.smartclass" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="kr.ac.mju.smartclass.MJUWebView"
+            android:label="@string/title_activity_mjuweb" >
+        </activity>
+    </application>
+
+</manifest>
